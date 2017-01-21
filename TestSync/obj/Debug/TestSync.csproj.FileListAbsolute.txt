@@ -1,0 +1,15 @@
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\TestSync.exe.config
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\TestSync.exe
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\TestSync.pdb
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.Files.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.MetadataStorage.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\ru\Microsoft.Synchronization.resources.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\ru\Microsoft.Synchronization.Files.resources.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\ru\Microsoft.Synchronization.MetadataStorage.resources.dll
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\obj\Debug\TestSync.exe
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\obj\Debug\TestSync.pdb
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\obj\Debug\TestSync.csprojResolveAssemblyReference.cache
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.xml
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.Files.xml
+E:\Programming\HomeTasks\Test1\TestSync\TestSync\bin\Debug\Microsoft.Synchronization.MetadataStorage.xml
