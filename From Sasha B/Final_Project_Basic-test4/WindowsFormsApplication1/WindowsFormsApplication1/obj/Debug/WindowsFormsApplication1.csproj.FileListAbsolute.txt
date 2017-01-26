@@ -1,0 +1,63 @@
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FileMaskFrom.resources
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\Homework\HomeworksHome\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ScheduleForm.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FileMaskFrom.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ScheduleForm.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FolderContent.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.Files.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.MetadataStorage.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.xml
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.Files.xml
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.MetadataStorage.xml
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.resources.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.Files.resources.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.MetadataStorage.resources.dll
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FileMaskFrom.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FolderContent.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ScheduleForm.resources
+E:\Programming\HomeTasks\Test1\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.MetadataStorage.dll
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.xml
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.Files.xml
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Microsoft.Synchronization.MetadataStorage.xml
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.resources.dll
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.Files.resources.dll
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ru\Microsoft.Synchronization.MetadataStorage.resources.dll
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FileMaskFrom.resources
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FolderContent.resources
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ScheduleForm.resources
+E:\Programming\C# NICE\2nd try\Test1\Test\From Sasha B\Final_Project_Basic-test4\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache

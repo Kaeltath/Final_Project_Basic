@@ -10,17 +10,15 @@ namespace WindowsFormsApplication1
     {
         public class TreeConstructorEventArgs : EventArgs
         {
-            public List<string> Path
-            {
-                set;get;
-            }            
+            public List<string> Path {set;get;}            
         }
 
        public event EventHandler<TreeConstructorEventArgs> TreeConstruckt;
 
        public List<string> path = new List<string>();
 
-       public List<string> PathUpdate{             
+       public List<string> PathUpdate
+        {             
             get { return path; }
         }
 
