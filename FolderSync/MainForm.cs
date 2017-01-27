@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
         private string master_path;
         private FormWindowState _OldFormState;
         SyncronizationController controller = new SyncronizationController();        
-        private int reccurency = 1440;
+        
 
         public SyncronizationController Controller 
         {
@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
         {
 
             InitializeComponent();
-            InitializeTimer();
+            
         }
 
         public void UpdateFilters(object sender, WindowsFormsApplication1.FileMaskFrom.FilterChangeEventArgs Args) 
@@ -48,14 +48,15 @@ namespace WindowsFormsApplication1
 
         private void Schedule_Button_Click(object sender, EventArgs e)
         {
-            ScheduleForm SchForm = new ScheduleForm(reccurency);
+            
+            ScheduleForm SchForm = new ScheduleForm(controller.Schedule);
             SchForm.ScheduleEventHendler += schedule_hendler;
             SchForm.ShowDialog();
         }
 
         public void schedule_hendler(object sender, WindowsFormsApplication1.ScheduleForm.ScheduleEventArgs Args) 
         {
-            reccurency = Args.timer;
+            controller.Schedule = Args.timer;
         }
         
         
@@ -157,19 +158,7 @@ namespace WindowsFormsApplication1
 
            }
         }
-
-        private void InitializeTimer()
-        {
-            // Call this procedure when the application starts.
-            // Set to 1 minute.
-            int min = 60000;
-            Timer1.Interval = reccurency * min;
-            Timer1.Tick += new EventHandler(Timer1_Tick);
-
-            // Enable timer.
-            Timer1.Enabled = true;
-            
-        }
+                
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {

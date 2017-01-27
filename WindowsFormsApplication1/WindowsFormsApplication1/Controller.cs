@@ -5,18 +5,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using TestSync;
+using System.Timers;
 
 namespace WindowsFormsApplication1
 {
     public class SyncronizationController
     {
         private FileSyncScopeFilter filter = new FileSyncScopeFilter();
-        //private List<string> hardcodedRootPathesList = new List<string>() { "D:\\1", "D:\\2", "D:\\3", "D:\\4" };
+        Timer timer = new Timer();
         private bool IsSyncInProgress = false;
         public static string logLocation = "D:\\Logs\\SyncLog.txt";
         PathUpdater Path_to_root = new PathUpdater();
         public List<String> Path;
+        private int schedule = 1440;
+        public int Schedule { set { schedule = value; } get { return schedule; } }        
         public string whitelist
         {
             set;
@@ -43,6 +45,7 @@ namespace WindowsFormsApplication1
 
         public void AddPath(string inp)
         {
+            Timer_Synch();
             Path_to_root.TreeConstruckt += this.EventCreate;
             Path_to_root.Add_path(inp);
         }
@@ -126,6 +129,25 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public void Timer_Synch() 
+        {
+            
+            int min = 60000;
+            timer.AutoReset = true;
+            timer.Interval = min* Schedule;
+            timer.Enabled = true;            
+            timer.Elapsed += RunSyncronizationTimer;
+            
+            
+
+        }
+
+        private void RunSyncronizationTimer(object sender, ElapsedEventArgs e)
+        {
+            RunSyncronization();
+            //timer.Dispose();
+        }
+
         //Runs sycronization of folders provided
         public void RunSyncronization()
         {
@@ -157,7 +179,7 @@ namespace WindowsFormsApplication1
                     folderSyncronizator.OnAppliedChangeEventEventHandler -= SyncronizationController_OnChangeAppliedChangeEventHandler;
                     folderSyncronizator.OnSkippedChangeEventEventHandler -= SyncronizationController_OnChangeSkippedChangeEventHandler;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //Log(String.Format(e.Message + " :  " + e.StackTrace));
                 }
@@ -197,6 +219,7 @@ namespace WindowsFormsApplication1
                     streamWriter.WriteLine("-------------------------------");
                 }
             }
+            //Timer_Synch();
         }
 
 

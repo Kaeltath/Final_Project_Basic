@@ -39,7 +39,6 @@
             this.RemoveNode_Client_button = new System.Windows.Forms.Button();
             this.AddNode_Client = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.Clien_Based_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,12 +126,11 @@
             this.Controls.Add(this.Clien_Based_Panel);
             this.Controls.Add(this.Ext_Config_Button);
             this.Name = "MainForm";
-            this.Text = "Folder Synchronizator";            
+            this.Text = "Folder Synchronizator";
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.Clien_Based_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
-            PathUpdater temp = new PathUpdater();
-            
+
         }
 
         #endregion
@@ -145,8 +143,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button RemoveNode_Client_button;
         private System.Windows.Forms.Button AddNode_Client;
-        private System.Windows.Forms.TreeView treeView_Client;
-        private System.Windows.Forms.Timer Timer1;       
+        private System.Windows.Forms.TreeView treeView_Client;       
     }
 }
 
