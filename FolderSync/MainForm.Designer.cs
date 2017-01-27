@@ -127,8 +127,7 @@
             this.Controls.Add(this.Clien_Based_Panel);
             this.Controls.Add(this.Ext_Config_Button);
             this.Name = "MainForm";
-            this.Text = "Folder Synchronizator";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Text = "Folder Synchronizator";            
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.Clien_Based_Panel.ResumeLayout(false);
             this.ResumeLayout(false);

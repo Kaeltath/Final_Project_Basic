@@ -16,7 +16,14 @@ namespace WindowsFormsApplication1
         //PathUpdater add = new PathUpdater();       
         private string master_path;
         private FormWindowState _OldFormState;
-        SyncronizationController Controller = new SyncronizationController();
+        SyncronizationController controller = new SyncronizationController();        
+        private int reccurency = 1440;
+
+        public SyncronizationController Controller 
+        {
+            set { controller = value; }
+            get { return controller; }
+        }
 
         public MainForm()
         {
@@ -25,29 +32,33 @@ namespace WindowsFormsApplication1
             InitializeTimer();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public void UpdateFilters(object sender, WindowsFormsApplication1.FileMaskFrom.FilterChangeEventArgs Args) 
         {
-           
-           
-            //controller.updateSyncFilters(controller.parseSyncFiltersFromView(testFilter1), controller.parseSyncFiltersFromView(testFilter2));
-            
-           
-
+            Controller.blacklist = Args.Black;
+            controller.whitelist = Args.White;
         }
-        
       
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FileMaskFrom FileMask = new FileMaskFrom();
-            FileMask.Show();    
+            FileMaskFrom FileMask = new FileMaskFrom(Controller.blacklist, controller.whitelist);
+            FileMask.FilterUpdateEventHendler += this.UpdateFilters;
+            FileMask.ShowDialog();      
         }
 
         private void Schedule_Button_Click(object sender, EventArgs e)
         {
-            ScheduleForm SchForm = new ScheduleForm();
-            SchForm.Show();
-        }      
+            ScheduleForm SchForm = new ScheduleForm(reccurency);
+            SchForm.ScheduleEventHendler += schedule_hendler;
+            SchForm.ShowDialog();
+        }
+
+        public void schedule_hendler(object sender, WindowsFormsApplication1.ScheduleForm.ScheduleEventArgs Args) 
+        {
+            reccurency = Args.timer;
+        }
+        
+        
 
         private void TrayIcon_MouseClick(object sender, MouseEventArgs e)
         {
@@ -70,6 +81,7 @@ namespace WindowsFormsApplication1
             }
         }
 
+        
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
@@ -112,45 +124,46 @@ namespace WindowsFormsApplication1
 
         private void AddNode_Client_Click(object sender, EventArgs e)
         {
-            Controller.TreeConstrucktForForm += Construction;            
+            controller.TreeConstrucktForForm += Construction;            
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.ShowDialog();
             string path = fbd.SelectedPath;
-            Controller.AddPath(path);  
+            controller.AddPath(path);  
 
         }
 
         private void RemoveNode_Client_button_Click(object sender, EventArgs e)
         {
-            Controller.TreeConstrucktForForm += Construction;
-            Controller.RemPath(treeView_Client.SelectedNode.Text);
+            controller.TreeConstrucktForForm += Construction;
+                        
+           try
+            {
+                controller.RemPath(treeView_Client.SelectedNode.Text);
+                if (treeView_Client.SelectedNode.Parent == null)
+                {
+                    controller.TreeConstrucktForForm += Construction;
+                    controller.RemPath(treeView_Client.SelectedNode.Text);
+                }
+                else
+                {
+                    Exception ex = new Exception();
+                    throw ex;
+                }
 
-          //  add.Remove();
-        //    try
-        //    {
-        //        if (treeView_Client.SelectedNode.Parent == null)
-        //        {
-        //            treeView_Client.Nodes.Remove(treeView_Client.SelectedNode);                   
-        //        }
-        //        else
-        //        {
-        //            Exception ex = new Exception();
-        //            throw ex;
-        //        }
-                
-        //    }
-        //    catch (Exception )
-        //    {
-        //        return;
-                
-        //    }
+            }
+           catch (Exception)
+           {
+               return;
+
+           }
         }
+
         private void InitializeTimer()
         {
             // Call this procedure when the application starts.
-            // Set to 1 second.
+            // Set to 1 minute.
             int min = 60000;
-            Timer1.Interval = 5*min;
+            Timer1.Interval = reccurency * min;
             Timer1.Tick += new EventHandler(Timer1_Tick);
 
             // Enable timer.
@@ -160,15 +173,13 @@ namespace WindowsFormsApplication1
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            //treeView_Client.Nodes.Clear();
-            //List<string> path = { "D:/1", "D:/2", "D:/3" };
-            //TreeAddNode createTree = new TreeAddNode(path);
-            //createTree.create_tree(treeView_Client);
+            controller.RunSyncronization();
+            Construction();
         }
 
         private void Sync_Button_Click(object sender, EventArgs e)
         {
-            Controller.RunSyncronization(true);            
+            controller.RunSyncronization();            
         }
 
         //private void TreeConstructonEvent() 
@@ -180,10 +191,18 @@ namespace WindowsFormsApplication1
         {
             
             treeView_Client.Nodes.Clear();
-            List<string> path = Controller.Path;
+            List<string> path = controller.Path;
             TreeAddNode createTree = new TreeAddNode(path);
             createTree.create_tree(treeView_Client);
         }
-        
+
+        private void Construction()
+        {
+
+            treeView_Client.Nodes.Clear();
+            List<string> path = controller.Path;
+            TreeAddNode createTree = new TreeAddNode(path);
+            createTree.create_tree(treeView_Client);
+        }
     }
 }

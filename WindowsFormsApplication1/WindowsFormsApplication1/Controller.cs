@@ -5,186 +5,298 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestSync;
+//using TestSync;
 
 namespace WindowsFormsApplication1
 {
     public class SyncronizationController
     {
-        //StreamWriter streamWriter = File.AppendText("D:\\SyncLog.txt");
-
         private FileSyncScopeFilter filter = new FileSyncScopeFilter();
-
-        private string[] rootPathsArray = new string[] { "D:\\1", "D:\\2", "D:\\3", "D:\\4" };
-
-        private bool isSyncInProgress = false;
-
+        //private List<string> hardcodedRootPathesList = new List<string>() { "D:\\1", "D:\\2", "D:\\3", "D:\\4" };
+        private bool IsSyncInProgress = false;
         public static string logLocation = "D:\\Logs\\SyncLog.txt";
-
-        private bool isOneWaySyncronization = true;
-
-        PathUpdater Path_to_root = new PathUpdater();        
-
+        PathUpdater Path_to_root = new PathUpdater();
         public List<String> Path;
+        public string whitelist
+        {
+            set;
+            get;
+        }
+        public string blacklist
+        {
+            set;
+            get;
+        }
         
-        public event EventHandler TreeConstrucktForForm;
 
+
+        //Events
+        public event EventHandler TreeConstrucktForForm;
+        public event EventHandler<SyncFiltersEventArgs> SyncFiltersUpdated;
+        public event EventHandler<SynchronizationEventArgs> OnSynchronizationStartedEventHandler;
+        public event EventHandler<SynchronizationEventArgs> OnSynchronizationCompleteEdEventHandler;
+        public event EventHandler<SynchronizationEventArgs> OnSynchronizationSkippedEventHandler;
+
+
+
+        //Methods
 
         public void AddPath(string inp)
         {
-            Path_to_root.TreeConstruckt += this.EventCreate; 
+            Path_to_root.TreeConstruckt += this.EventCreate;
             Path_to_root.Add_path(inp);
-            
-            
-            
-            
         }
 
         public void EventCreate(object o, EventArgs arg)
         {
             this.Path = Path_to_root.path;
-            Path_to_root.TreeConstruckt += this.EventCreate;                
+            Path_to_root.TreeConstruckt += this.EventCreate;
             TreeConstrucktForForm(this, EventArgs.Empty);
         }
-        
+
         public void RemPath(string rem)
         {
             Path_to_root.Remove_path(rem);
         }
 
-
-        //Parses paths for folders
-        public string parseFolderPath(string rootDirectoryPath)
-        {
-            if (Directory.Exists(rootDirectoryPath))
-            {
-
-            }
-            //Busines logic
-            throw new NotImplementedException();
-        }
-
-        public void updateRootPaths(string[] parsedRootPathsArray)
-        {
-            //Busines logic
-            throw new NotImplementedException();
-        }
-
         //Converts string from text box in UI to string array of dedicated filters, by ';' and ',' separators
-        public string[] parseSyncFiltersFromView(string syncFiltersFromView)
+        public string[] ParseSyncFiltersFromView(string syncFiltersFromView)
         {
-            char[] delimitersForFiltersParsing = new char[] {',', ';' };
+            char[] delimitersForFiltersParsing = new char[] { ',', ';' };
             string[] filtersArray = syncFiltersFromView.Split(delimitersForFiltersParsing, StringSplitOptions.RemoveEmptyEntries);
 
-            Log("Filter for syncronization has been sucessfully parsed");                                  
+            Log("Filter for syncronization has been sucessfully parsed");
 
             return filtersArray;
         }
 
-        //Re-Creates includeFiles and excludeFiles filters according to parsed from UI values
-        public void updateSyncFilters(string[] excludeFiltersArray, string[] includeFilterArray)
-        {
-            if (excludeFiltersArray != null && excludeFiltersArray.Length > 0)
+        //Re-creates includeFiles and excludeFiles filters according to parsed from UI values
+        public void UpdateSyncFilters(string[] excludeFiltersArray, string[] includeFilterArray)
+        {           
+
+            try
             {
-                filter.FileNameExcludes.Clear();
+                SyncFiltersUpdated += SyncronizationController_OnSyncFiltersUpdatedEventHandler;
 
-                Log("'Exclude' filter has been cleared");
-
-                for (int i = 0; i < excludeFiltersArray.Length; i++)
+                if (excludeFiltersArray != null && excludeFiltersArray.Length > 0)
                 {
-                    if (!String.IsNullOrEmpty(excludeFiltersArray[i]))
+                    filter.FileNameExcludes.Clear();
+
+                    Log("'Exclude' filter has been cleared");
+
+                    for (int i = 0; i < excludeFiltersArray.Length; i++)
                     {
-                        filter.FileNameExcludes.Add(excludeFiltersArray[i]);
+                        if (!String.IsNullOrEmpty(excludeFiltersArray[i]))
+                        {
+                            filter.FileNameExcludes.Add(excludeFiltersArray[i]);
+                        }
                     }
+
+                    OnSyncFiltersUpdated("Exclude");
                 }
-
-                Log("'Exclude' filter has been updated with parsed values");                
-            }
-            else
-            {
-                Log("'Exclude' filter is empty");
-            }
-
-            if (includeFilterArray != null && includeFilterArray.Length > 0)
-            {
-                filter.FileNameIncludes.Clear();
-
-                Log("'Include' filter has been cleared");
-
-                for (int i = 0; i < includeFilterArray.Length; i++)
+                else
                 {
-                    if (!String.IsNullOrEmpty(includeFilterArray[i]))
-                    {
-                        filter.FileNameIncludes.Add(includeFilterArray[i]);
-                    }                    
+                    Log("'Exclude' filter is empty. Skiping update of 'Exclude' filter");
                 }
 
-                Log("'Exclude' filter has been updated with parsed values");
+                if (includeFilterArray != null && includeFilterArray.Length > 0)
+                {
+                    filter.FileNameIncludes.Clear();
+
+                    Log("'Include' filter has been cleared");
+
+                    for (int i = 0; i < includeFilterArray.Length; i++)
+                    {
+                        if (!String.IsNullOrEmpty(includeFilterArray[i]))
+                        {
+                            filter.FileNameIncludes.Add(includeFilterArray[i]);
+                        }
+                    }
+
+                    OnSyncFiltersUpdated("Include");
+                }
+                else
+                {
+                    Log("'Include' filter is empty. Skiping update of 'Include' filter");
+                }
             }
-            else
+            catch (Exception e)
             {
-                Log("'Include' filter is empty");
+                Log(String.Format(e.Message + " :  " + e.StackTrace));
             }
         }
 
         //Runs sycronization of folders provided
-        public void RunSyncronization(bool syncronizationDirection)
+        public void RunSyncronization()
         {
+            OnSynchronizationStartedEventHandler += SyncronizationController_OnSynchronizationStartedEventHandler;
+            OnSynchronizationCompleteEdEventHandler += SyncronizationController_OnSynchronizationCompletedEventHandler;
+            OnSynchronizationSkippedEventHandler += SyncronizationController_OnSynchronizationSkippedEventHandler;
 
-
-            if (!isSyncInProgress)
+            if (!IsSyncInProgress)
             {
-                isSyncInProgress = true;
+                OnSynchronizationStarted("Started");
+
+                IsSyncInProgress = true;
 
                 try
                 {
-                    FoldersSyncronizator folderSyncronizator = new FoldersSyncronizator();
+                    UpdateSyncFilters(ParseSyncFiltersFromView(blacklist), ParseSyncFiltersFromView(whitelist));
 
-                    folderSyncronizator.Filter = filter;
-                    folderSyncronizator.RootPathsArray = rootPathsArray;
+                    FoldersSynchronizator folderSyncronizator = new FoldersSynchronizator(Path, filter);
+
+                    folderSyncronizator.OnAppliedChangeEventEventHandler += SyncronizationController_OnChangeAppliedChangeEventHandler;
+                    folderSyncronizator.OnSkippedChangeEventEventHandler += SyncronizationController_OnChangeSkippedChangeEventHandler;
 
                     folderSyncronizator.DetectChangesInAllRootFolders();
 
-                    if (!syncronizationDirection)
-                    {
-                        folderSyncronizator.syncAllFoldersTwoWays();
-                    }
-                    else
-                    {
-                        folderSyncronizator.syncAllFoldersTwoWays();
-                    }
+                    folderSyncronizator.syncAllFoldersTwoWays();
+
+                    OnSynchronizationCompleted("Completted");
+
+                    folderSyncronizator.OnAppliedChangeEventEventHandler -= SyncronizationController_OnChangeAppliedChangeEventHandler;
+                    folderSyncronizator.OnSkippedChangeEventEventHandler -= SyncronizationController_OnChangeSkippedChangeEventHandler;
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    //Log(String.Format(e.Message + " :  " + e.StackTrace));
                 }
                 finally
                 {
-                    isSyncInProgress = false;
-                }                
+                    IsSyncInProgress = false;
+                }
             }
             else
             {
-                Log("New cycle of syncronization has not been started, since the previous one is still in progress");
-            }            
-        }
-        
-        //Logger
-        public static void Log(string logMessage)
-        {
+                OnSynchronizationSkipped("Skipped");
+            }
 
-            using (StreamWriter streamWriter = File.AppendText(logLocation))
+            OnSynchronizationStartedEventHandler -= SyncronizationController_OnSynchronizationStartedEventHandler;
+            OnSynchronizationCompleteEdEventHandler -= SyncronizationController_OnSynchronizationCompletedEventHandler;
+            OnSynchronizationSkippedEventHandler -= SyncronizationController_OnSynchronizationSkippedEventHandler;
+
+        }
+
+        //Adds lines to log file
+        public void Log(string logMessage)
+        {
+            if (Directory.Exists("D:\\Logs\\"))
             {
-                streamWriter.WriteLine("{0} {1} : {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), logMessage);
-                streamWriter.WriteLine("-------------------------------");
+                using (StreamWriter streamWriter = File.AppendText(logLocation))
+                {
+                    streamWriter.WriteLine("{0} {1} : {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), logMessage);
+                    streamWriter.WriteLine("-------------------------------");
+                }
+            }
+            else 
+            {
+                Directory.CreateDirectory("D:\\Logs\\");
+                using (StreamWriter streamWriter = File.AppendText(logLocation))
+                {
+                    streamWriter.WriteLine("{0} {1} : {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), logMessage);
+                    streamWriter.WriteLine("-------------------------------");
+                }
             }
         }
 
 
 
+        //Events senders
+        private void OnSyncFiltersUpdated(string filterType)
+        {
+            if (SyncFiltersUpdated != null)
+            {
+                var eventArgs = new SyncFiltersEventArgs(filterType);
+                SyncFiltersUpdated(this, eventArgs);
+            }
+        }
+
+        private void OnSynchronizationStarted(string details)
+        {
+            if (OnSynchronizationStartedEventHandler != null)
+            {
+                var eventArgs = new SynchronizationEventArgs(details);
+                OnSynchronizationStartedEventHandler(this, eventArgs);
+            }
+        }
+
+        private void OnSynchronizationCompleted(string details)
+        {
+            if (OnSynchronizationCompleteEdEventHandler != null)
+            {
+                var eventArgs = new SynchronizationEventArgs(details);
+                OnSynchronizationCompleteEdEventHandler(this, eventArgs);
+            }
+        }
+
+        private void OnSynchronizationSkipped(string details)
+        {
+            if (OnSynchronizationSkippedEventHandler != null)
+            {
+                var eventArgs = new SynchronizationEventArgs(details);
+                OnSynchronizationSkippedEventHandler(this, eventArgs);
+            }
+        }
 
 
+
+        //Event Handlers
+        //Adds 'Synchronization Started' message to log
+        private void SyncronizationController_OnSynchronizationStartedEventHandler(object sender, SynchronizationEventArgs e)
+        {
+            Log("Synchronization session is started");
+        }
+
+        //Adds 'Synchronization Completted' message to log
+        private void SyncronizationController_OnSynchronizationCompletedEventHandler(object sender, SynchronizationEventArgs e)
+        {
+            Log("Synchronization session is completted");
+        }
+
+        //Adds 'Filter Updated' message to log
+        private void SyncronizationController_OnSyncFiltersUpdatedEventHandler(object sender, SyncFiltersEventArgs e)
+        {
+            Log(String.Format("'{0}' filter has been updated with parsed values", e.Message));
+        }
+
+        //Adds 'Synchronization Skipped' message to log
+        private void SyncronizationController_OnSynchronizationSkippedEventHandler(object sender, SynchronizationEventArgs e)
+        {
+            Log("Synchronization session is skipped, since previous session is still in progress");
+        }
+
+        //Adds applied change to log
+        private void SyncronizationController_OnChangeAppliedChangeEventHandler(object sender, SynchronizationEventArgs e)
+        {
+            Log(e.Message);
+        }
+
+        //Adds skipped change to log
+        private void SyncronizationController_OnChangeSkippedChangeEventHandler(object sender, SynchronizationEventArgs e)
+        {
+            Log(e.Message);
+        }
+
+
+
+        //Event Args classes
+        public class SyncFiltersEventArgs : EventArgs
+        {
+            public string Message { private set; get; }
+            public SyncFiltersEventArgs(string message)
+            {
+                Message = message;
+            }
+        }
+
+        public class SynchronizationEventArgs : EventArgs
+        {
+            public string Message { private set; get; }
+            public SynchronizationEventArgs(string message)
+            {
+                Message = message;
+            }
+        }
 
     }
 }

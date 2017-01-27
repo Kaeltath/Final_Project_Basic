@@ -32,7 +32,7 @@
             this.Hourly_Radio = new System.Windows.Forms.RadioButton();
             this.TenMin_radio = new System.Windows.Forms.RadioButton();
             this.UserSetSch_Radio = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Timer_textbox = new System.Windows.Forms.TextBox();
             this.min_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@
             this.Daily_Radio.TabStop = true;
             this.Daily_Radio.Text = "Daily";
             this.Daily_Radio.UseVisualStyleBackColor = true;
+            
             // 
             // Hourly_Radio
             // 
@@ -59,6 +60,7 @@
             this.Hourly_Radio.TabStop = true;
             this.Hourly_Radio.Text = "Hourly";
             this.Hourly_Radio.UseVisualStyleBackColor = true;
+            
             // 
             // TenMin_radio
             // 
@@ -70,6 +72,7 @@
             this.TenMin_radio.TabStop = true;
             this.TenMin_radio.Text = "Every 10 min";
             this.TenMin_radio.UseVisualStyleBackColor = true;
+            
             // 
             // UserSetSch_Radio
             // 
@@ -81,13 +84,15 @@
             this.UserSetSch_Radio.TabStop = true;
             this.UserSetSch_Radio.Text = "Every";
             this.UserSetSch_Radio.UseVisualStyleBackColor = true;
+            
             // 
-            // textBox1
+            // Timer_textbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(72, 101);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(27, 20);
-            this.textBox1.TabIndex = 4;
+            this.Timer_textbox.Location = new System.Drawing.Point(72, 101);
+            this.Timer_textbox.Name = "Timer_textbox";
+            this.Timer_textbox.Size = new System.Drawing.Size(27, 20);
+            this.Timer_textbox.TabIndex = 4;
+            this.Timer_textbox.Text = "5";
             // 
             // min_label
             // 
@@ -125,7 +130,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.min_label);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Timer_textbox);
             this.Controls.Add(this.UserSetSch_Radio);
             this.Controls.Add(this.TenMin_radio);
             this.Controls.Add(this.Hourly_Radio);
@@ -144,7 +149,7 @@
         private System.Windows.Forms.RadioButton Hourly_Radio;
         private System.Windows.Forms.RadioButton TenMin_radio;
         private System.Windows.Forms.RadioButton UserSetSch_Radio;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Timer_textbox;
         private System.Windows.Forms.Label min_label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;

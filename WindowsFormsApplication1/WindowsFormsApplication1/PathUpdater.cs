@@ -33,22 +33,24 @@ namespace WindowsFormsApplication1
                {
                    try
                    {
-                       if (path[i].Contains(add) || add.Contains(path[i]))
+                       if (path[i].Contains(add) || add.Contains(path[i]) || add.Equals(path[i]))
                        {
                            throw new Exception();
                        }
-                       path.Add(add);                       
-                       Update_Config();
-
                    }
                    catch (Exception)
                    {
                        return;
-                   }
-               }              
+                   }                  
+               }
+               path.Add(add);
+               Update_Config();
            }
-           path.Add(add);
-           Update_Config();
+           else
+           {
+               path.Add(add);
+               Update_Config();
+           }
        }
        
 
