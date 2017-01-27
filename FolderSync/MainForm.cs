@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
         //PathUpdater add = new PathUpdater();       
         private string master_path;
         private FormWindowState _OldFormState;
-        SyncronizationController controller = new SyncronizationController();        
+        SyncronizationController controller = new SyncronizationController();       
         
 
         public SyncronizationController Controller 
@@ -24,24 +24,25 @@ namespace WindowsFormsApplication1
             set { controller = value; }
             get { return controller; }
         }
+        
 
         public MainForm()
-        {
-
+        {            
             InitializeComponent();
+            controller.OnSynchronizationCompleteEdEventHandler += Construction;
             
         }
 
         public void UpdateFilters(object sender, WindowsFormsApplication1.FileMaskFrom.FilterChangeEventArgs Args) 
         {
-            Controller.blacklist = Args.Black;
-            controller.whitelist = Args.White;
+            Controller.Blacklist = Args.Black;
+            controller.Whitelist = Args.White;
         }
       
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FileMaskFrom FileMask = new FileMaskFrom(Controller.blacklist, controller.whitelist);
+            FileMaskFrom FileMask = new FileMaskFrom(Controller.Blacklist, controller.Whitelist);
             FileMask.FilterUpdateEventHendler += this.UpdateFilters;
             FileMask.ShowDialog();      
         }
@@ -158,23 +159,14 @@ namespace WindowsFormsApplication1
 
            }
         }
-                
-
-        private void Timer1_Tick(object Sender, EventArgs e)
-        {
-            controller.RunSyncronization();
-            Construction();
-        }
+                        
 
         private void Sync_Button_Click(object sender, EventArgs e)
         {
             controller.RunSyncronization();            
         }
 
-        //private void TreeConstructonEvent() 
-        //{
-            
-        //}
+        
 
         private void Construction(object obj, EventArgs arg) 
         {

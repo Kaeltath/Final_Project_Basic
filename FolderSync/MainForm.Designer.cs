@@ -125,6 +125,7 @@
             this.Controls.Add(this.Schedule_Button);
             this.Controls.Add(this.Clien_Based_Panel);
             this.Controls.Add(this.Ext_Config_Button);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Folder Synchronizator";
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);

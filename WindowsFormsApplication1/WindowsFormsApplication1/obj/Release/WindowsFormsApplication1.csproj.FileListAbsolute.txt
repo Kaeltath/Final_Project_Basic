@@ -1,0 +1,11 @@
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.config
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.FileMaskFrom.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.MainForm.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.FolderContent.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.ScheduleForm.resources
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+D:\Project\WindowsFormsApplication1\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb

@@ -18,18 +18,24 @@ namespace WindowsFormsApplication1
         PathUpdater Path_to_root = new PathUpdater();
         public List<String> Path;
         private int schedule = 1440;
-        public int Schedule { set { schedule = value; } get { return schedule; } }        
-        public string whitelist
+        private string whitelist = "";
+        private string blacklist = "";
+        public int Schedule { set { schedule = value; Timer_Synch(); } get { return schedule; } }        
+        public string Whitelist
         {
-            set;
-            get;
+            set { whitelist = value; }
+            get { return whitelist;}
         }
-        public string blacklist
+        public string Blacklist
         {
-            set;
-            get;
+            set { blacklist = value; }
+            get { return blacklist; }
         }
-        
+
+        public SyncronizationController() 
+        {
+            Timer_Synch();
+        }
 
 
         //Events
@@ -45,7 +51,6 @@ namespace WindowsFormsApplication1
 
         public void AddPath(string inp)
         {
-            Timer_Synch();
             Path_to_root.TreeConstruckt += this.EventCreate;
             Path_to_root.Add_path(inp);
         }
@@ -133,10 +138,12 @@ namespace WindowsFormsApplication1
         {
             
             int min = 60000;
+            timer.Enabled = true;
+            timer.Start();
             timer.AutoReset = true;
             timer.Interval = min* Schedule;
-            timer.Enabled = true;            
-            timer.Elapsed += RunSyncronizationTimer;
+            timer.Elapsed += RunSyncronizationTimer;            
+            
             
             
 
@@ -163,7 +170,7 @@ namespace WindowsFormsApplication1
 
                 try
                 {
-                    UpdateSyncFilters(ParseSyncFiltersFromView(blacklist), ParseSyncFiltersFromView(whitelist));
+                    UpdateSyncFilters(ParseSyncFiltersFromView(Blacklist), ParseSyncFiltersFromView(Whitelist));
 
                     FoldersSynchronizator folderSyncronizator = new FoldersSynchronizator(Path, filter);
 
@@ -179,7 +186,7 @@ namespace WindowsFormsApplication1
                     folderSyncronizator.OnAppliedChangeEventEventHandler -= SyncronizationController_OnChangeAppliedChangeEventHandler;
                     folderSyncronizator.OnSkippedChangeEventEventHandler -= SyncronizationController_OnChangeSkippedChangeEventHandler;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Log(String.Format(e.Message + " :  " + e.StackTrace));
                 }
