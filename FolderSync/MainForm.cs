@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace WindowsFormsApplication1
 {
@@ -16,7 +17,10 @@ namespace WindowsFormsApplication1
         //PathUpdater add = new PathUpdater();       
         private string master_path;
         private FormWindowState _OldFormState;
-        SyncronizationController controller = new SyncronizationController();       
+        SyncronizationController controller = new SyncronizationController();
+        Thread demoThread;
+
+        delegate void ConstructionCallback();
         
 
         public SyncronizationController Controller 
@@ -29,7 +33,7 @@ namespace WindowsFormsApplication1
         public MainForm()
         {            
             InitializeComponent();
-            controller.OnSynchronizationCompleteEdEventHandler += Construction;
+            controller.OnSynchronizationCompleteEdEventHandler += create_tree_unsafe;
             
         }
 
@@ -166,6 +170,18 @@ namespace WindowsFormsApplication1
             controller.RunSyncronization();            
         }
 
+        private void create_tree_unsafe(object sender,EventArgs e)
+        {
+            this.demoThread = new Thread(new ThreadStart(this.ThreadProcUnsafe));
+
+            this.demoThread.Start();
+        }
+
+        private void ThreadProcUnsafe()
+        {
+            this.Construction();
+        }
+
         
 
         private void Construction(object obj, EventArgs arg) 
@@ -176,14 +192,21 @@ namespace WindowsFormsApplication1
             TreeAddNode createTree = new TreeAddNode(path);
             createTree.create_tree(treeView_Client);
         }
-
+        
         private void Construction()
         {
-
-            treeView_Client.Nodes.Clear();
-            List<string> path = controller.Path;
-            TreeAddNode createTree = new TreeAddNode(path);
-            createTree.create_tree(treeView_Client);
+            if (this.treeView_Client.InvokeRequired)
+            {
+                ConstructionCallback d = new ConstructionCallback(Construction);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                treeView_Client.Nodes.Clear();
+                List<string> path = controller.Path;
+                TreeAddNode createTree = new TreeAddNode(path);
+                createTree.create_tree(treeView_Client);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Timers;
 
 namespace WindowsFormsApplication1
@@ -12,7 +13,7 @@ namespace WindowsFormsApplication1
     public class SyncronizationController
     {
         private FileSyncScopeFilter filter = new FileSyncScopeFilter();
-        Timer timer = new Timer();
+        System.Timers.Timer timer = new System.Timers.Timer();
         private bool IsSyncInProgress = false;
         public static string logLocation = "D:\\Logs\\SyncLog.txt";
         PathUpdater Path_to_root = new PathUpdater();
@@ -37,6 +38,7 @@ namespace WindowsFormsApplication1
             Timer_Synch();
         }
 
+        Mutex mute = new Mutex();
 
         //Events
         public event EventHandler TreeConstrucktForForm;
@@ -137,7 +139,7 @@ namespace WindowsFormsApplication1
         public void Timer_Synch() 
         {
             
-            int min = 60000;
+            int min = 60000;            
             timer.Enabled = true;
             timer.Start();
             timer.AutoReset = true;
@@ -151,8 +153,11 @@ namespace WindowsFormsApplication1
 
         private void RunSyncronizationTimer(object sender, ElapsedEventArgs e)
         {
+            mute.WaitOne();
             RunSyncronization();
-            //timer.Dispose();
+            mute.ReleaseMutex();
+            OnSynchronizationCompleted("Completted");
+
         }
 
         //Runs sycronization of folders provided
