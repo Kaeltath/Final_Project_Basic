@@ -108,7 +108,7 @@
             // 
             // AddNode_Client
             // 
-            this.AddNode_Client.Location = new System.Drawing.Point(3, 219);
+            this.AddNode_Client.Location = new System.Drawing.Point(0, 219);
             this.AddNode_Client.Name = "AddNode_Client";
             this.AddNode_Client.Size = new System.Drawing.Size(134, 27);
             this.AddNode_Client.TabIndex = 1;
@@ -126,6 +126,9 @@
             this.Controls.Add(this.Clien_Based_Panel);
             this.Controls.Add(this.Ext_Config_Button);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(486, 343);
+            this.MinimumSize = new System.Drawing.Size(486, 343);
             this.Name = "MainForm";
             this.Text = "Folder Synchronizator";
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
